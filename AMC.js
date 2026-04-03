@@ -48,7 +48,7 @@ elements.ytterbium = {
 	hardness: 0.2,
 	reactions: {
 	  "water": {elem1:"ytterbium_hydroxide", elem2:"hydrogen"},
-	  "hydrogen": {elem1:"ytterbium_trihydride", elem2:null},
+	  "hydrogen": {elem1:"ytterbium_hydride", elem2:null},
 	  "chlorine": {elem1:"ytterbium_chloride", elem2:null},
 	  "bromine": {elem1:"ytterbium_bromide", elem2:null},
 	  "hydrobromic_acid": {elem1:"ytterbium_bromide", elem2:"hydrogen"},
@@ -124,8 +124,8 @@ elements.molten_ytterbium_oxide = {
 	behavior: behaviors.MOLTEN,
 	fireColor: ["#39ff14", "#00913f"],
 };
-//Ytterbium Dihydride (YbH2)
-elements.ytterbium_dihydride = {
+//Ytterbium Hydride (YbH₃)
+elements.ytterbium_hydride = {
 	density: 7100,
 	color: ["#23282b", "#474b4e"],
 	tempHigh: 600,
@@ -136,6 +136,51 @@ elements.ytterbium_dihydride = {
 	reactions: {
 	  "water": {elem1:"ytterbium_hydroxide", elem2:null},
 	},
+};
+//Ytterbium Chloride (YbCl₃)
+elements.ytterbium_chloride = {
+	density: 4600,
+	color: ["#ffffff", "#d3d3d3"],
+	tempHigh: 703,
+	stateHigh: "molten_ytterbium_chloride",
+	state: "solid",
+	category: "powders",
+	behavior: behaviors.POWDER,
+	reactions: {
+	  "water": {elem1:"ytterbium_hydroxide", elem2:null},
+	}
+};
+elements.molten_ytterbium_chloride = {
+	density: 3580,
+	color: ["#ffc067", "#ffdbbb"],
+	temp: 900,
+	tempLow: 703,
+	stateLow: "ytterbium_chloride",
+	state: "liquid",
+	category: "states",
+	behavior: behaviors.MOLTEN,
+	fireColor: ["#39ff14", "#00913f"],
+};
+//Ytterbium Bromide (YbBr₃)
+elements.ytterbium_bromide = {
+	density: 5350,
+	color: ["#ffffff", "#f2f0eb"],
+	tempHigh: 300,
+	stateHigh: "molten_ytterbium_bromide",
+	state: "solid",
+	category: "powders",
+	behavior: behaviors.POWDER,
+};
+elements.molten_ytterbium_bromide = {
+	density: 5070,
+	color: ["#fbceb1", "#ffaa66"],
+	temp: 500,
+	tempLow: 300, 
+	stateLow: "ytterbium_bromide",
+	state: "liquid",
+	category: "states",
+	behavior: behaviors.MOLTEN,
+	fireColor: ["#39ff14", "#00913f"],
 };
 //Ytterbium stuff by Ytterbium
 elements.acid.name="hydrochloric_acid"
