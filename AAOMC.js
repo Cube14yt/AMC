@@ -1,5 +1,5 @@
-//AMC
-//adacey's chemical mod
+//AAOMC
+//adacey and others' modded chem
 //COMMUNITY R74ncord PROJECT TO MOD EVERY CHEMICAL ELEMENT INTO SANDBOXELS
 console.log("vro just play the mod")
 
