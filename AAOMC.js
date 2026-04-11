@@ -48,7 +48,7 @@ elements.bromine = {
 	color: ["#401505", "#401005", "#401107", "#3d190a"],
 	tempLow: -7.2,
 	tempHigh: 58.8,
-	stateLow: "frozen_bromine",
+	stateLow: "bromine_ice",
 	stateHigh: "bromine_gas",
 	state: "liquid",
 	category: "liquids",
@@ -361,12 +361,11 @@ elements.oganesson = {
 			if (alpha_particle) {
 				alpha_particle.temp += 1000
 			}
-			changePixel(pixel, "livermormium")
+			changePixel(pixel, "livermorium")
 			pixel.temp += 1000
 		}
 	}
 }
-
 elements.transuranium_explosion = {
 	color: ["#a7ff5f", "#54fa83", "#53fdc5"],
 	behavior: [
