@@ -123,6 +123,19 @@ elements.molten_ytterbium = {
 	behavior: behaviors.MOLTEN,
 	conduct: 0.6,
 	fireColor: ["#39ff14", "#00913f"],
+	tick: function (pixel) {
+		for (let i = 0; i < adjacentCoords.length; i++) {
+			let coord = adjacentCoords[i]
+			let x = pixel.x + coord[0]
+			let y = pixel.y + coord[1]
+			if (isEmpty(x, y)) {
+				if (Math.random() < 0.0001) {
+					changePixel(pixel, "ytterbium_oxide")
+					return
+				}
+			}
+		}
+	}
 };
 //Ytterbium Hydroxide (Yb(OH)₃)
 elements.ytterbium_hydroxide = {
@@ -167,7 +180,7 @@ elements.molten_ytterbium_oxide = {
 	behavior: behaviors.MOLTEN,
 	fireColor: ["#39ff14", "#00913f"],
 };
-//Ytterbium Hydride (YbH2)
+//Ytterbium Hydride (YbH₃)
 elements.ytterbium_hydride = {
 	density: 7100,
 	color: ["#23282b", "#474b4e"],
@@ -225,7 +238,178 @@ elements.molten_ytterbium_bromide = {
 	behavior: behaviors.MOLTEN,
 	fireColor: ["#39ff14", "#00913f"],
 };
-//Ytterbium stuff by Ytterbium
+//Ytterbium-169 (¹⁶⁹Yb)
+elements.ytterbium169 = {
+  density: 6970,
+	color: ["#e3e4e5", "#9c9c9c", "#ada898"],
+	tempHigh: 824,
+	stateHigh: "molten_ytterbium169",
+	state: "solid",
+	category: "solids",
+	conduct: 0.6,
+	hardness: 0.2,
+    reactions: {
+		"water": { elem1: "ytterbium_hydroxide", elem2: ["hydrogen", "dirty_water"] },
+		"hydrogen": { elem1: "ytterbium_hydride", elem2: null },
+		"chlorine": { elem1: "ytterbium_chloride", elem2: null },
+		"bromine": { elem1: "ytterbium_bromide", elem2: null },
+		"hydrobromic_acid": { elem1: "ytterbium_bromide", elem2: "hydrogen" },
+		"acid": { elem1: "ytterbium_chloride", elem2: "hydrogen" },
+		"neutral_acid": { elem1: "ytterbium_chloride", elem2: ["hydrogen", "water"] },
+		"neutron": { elem1: "ytterbium169", elem2: null, temp1: 150 },
+	  },
+	behavior: [
+    "XX|CR:radiation%0.1 AND CH:thulium%0.00001|XX", "CR:radiation%0.1 AND CH:thulium%0.00001|XX|CR:radiation%0.001 AND CH:thulium%0.00001", "M2|M1|M2"
+	],
+	tick: function (pixel) {
+      pixel.temp += 0.0005;
+    },
+};
+elements.molten_ytterbium169 = {
+  density: 6970,
+	color: ["#f5b27a", "#e06a1a", "#d99a4a"],
+	temp: 1600,
+	tempLow: 824,
+	stateLow: "ytterbium169",
+	state: "solid",
+	category: "states",
+	conduct: 0.6,
+	hardness: 0.2,
+	behavior: [
+	"XX|CR:fire%2.5 AND CH:molten_thulium%0.00001 AND CR:radiation%0.1|XX", "M2 AND CH:molten_thulium%0.00001 AND CR:radiation%0.1|XX|M2 AND CH:molten_thulium%0.00001 AND CR:radiation%0.1", "M1|M1|M1"
+	],
+	tick: function (pixel) {
+      pixel.temp += 0.0005;
+    },
+};
+//Stainless Ytterbium (Yb)
+elements.stainless_ytterbium = {
+    density: 6970,
+	color: ["#e3e4e5", "#9c9c9c", "#ada898"],
+	tempHigh: 824,
+	stateHigh: "molten_stainless_ytterbium",
+	state: "solid",
+	category: "solids",
+	behavior: behaviors.WALL,
+	conduct: 0.6,
+	hardness: 0.2,
+	reactions: {
+		"hydrogen": { elem1: "ytterbium_hydride", elem2: null },
+		"chlorine": { elem1: "ytterbium_chloride", elem2: null },
+		"bromine": { elem1: "ytterbium_bromide", elem2: null },
+		"hydrobromic_acid": { elem1: "ytterbium_bromide", elem2: "hydrogen" },
+		"acid": { elem1: "ytterbium_chloride", elem2: "hydrogen" },
+		"neutral_acid": { elem1: "ytterbium_chloride", elem2: ["hydrogen", "water"] },
+	},
+};
+elements.molten_stainless_ytterbium = {
+	density: 6500,
+	color: ["#f5b27a", "#e06a1a", "#d99a4a"],
+	temp: 1000,
+	tempLow: 824,
+	stateLow: "stainless_ytterbium",
+	state: "liquid",
+	category: "states",
+	behavior: behaviors.MOLTEN,
+	conduct: 0.6,
+	fireColor: ["#39ff14", "#00913f"],
+};
+	//Thulium (Tm)
+	elements.thulium = {
+	density: 9321,
+	color: ["#23282b", "#a9a9a9"],
+	tempHigh: 1545,
+	stateHigh: "molten_thulium",
+	state: "solid",
+	category: "solids",
+	behavior: behaviors.WALL,
+	conduct: 0.4,
+	hardness: 0.2,
+	tick: function (pixel) {
+		for (let i = 0; i < adjacentCoords.length; i++) {
+			let coord = adjacentCoords[i]
+			let x = pixel.x + coord[0]
+			let y = pixel.y + coord[1]
+			if (isEmpty(x, y)) {
+				if (Math.random() < 0.0001) {
+					changePixel(pixel, "thulium_oxide")
+					return
+				}
+			}
+		}
+	}
+};
+elements.molten_thulium = {
+	density: 8560,
+	color: ["#78542e", "#a87f52"],
+	temp: 1800,
+	tempLow: 1545,
+	stateLow: "thulium",
+	state: "liquid",
+	category: "states",
+	behavior: behaviors.MOLTEN,
+	conduct: 0.4,
+	fireColor: ["#14d8ff", "#007e91"],
+    tick: function (pixel) {
+		for (let i = 0; i < adjacentCoords.length; i++) {
+			let coord = adjacentCoords[i]
+			let x = pixel.x + coord[0]
+			let y = pixel.y + coord[1]
+			if (isEmpty(x, y)) {
+				if (Math.random() < 0.0001) {
+					changePixel(pixel, "thulium_oxide")
+					return
+				}
+			}
+		}
+	}
+};
+//Thulium Oxide (Tm₂O₃)
+elements.thulium_oxide = {
+	density: 8900,
+	color: "#ffffff",
+	tempHigh: 2341,
+	stateHigh: "molten_thulium_oxide",
+	state: "solid",
+	category: "powders",
+	behavior: behaviors.POWDER,
+};
+elements.molten_thulium_oxide = {
+	density: 7700,
+	color: ["#ffe5d6", "#ffd9cc"],
+	temp: 2600,
+	tempLow: 2227,
+	stateLow: "thulium_oxide",
+	state: "liquid",
+	category: "states",
+	behavior: behaviors.MOLTEN,
+	fireColor: ["#14d8ff", "#007e91"],
+};
+//Stainless Thulium (Tm)
+elements.stainless_thulium = {
+    density: 9321,
+	color: ["#23282b", "#a9a9a9"],
+	tempHigh: 1545,
+	stateHigh: "molten_stainless_thulium",
+	state: "solid",
+	category: "solids",
+	behavior: behaviors.WALL,
+	conduct: 0.4,
+	hardness: 0.2,
+};
+elements.molten_stainless_thulium = {
+    density: 8560,
+	color: ["#78542e", "#a87f52"],
+	temp: 1800,
+	tempLow: 1545,
+	stateLow: "stainless_thulium",
+	state: "liquid",
+	category: "states",
+	behavior: behaviors.MOLTEN,
+	conduct: 0.4,
+	fireColor: ["#14d8ff", "#007e91"],
+};
+//Ytterbium stuff by Kytterbium
 elements.acid.name = "hydrochloric_acid"
 if (langCode === "xem") {
 	lang.bromine = "🟧☠️💧";
